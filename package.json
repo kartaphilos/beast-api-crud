@@ -1,0 +1,25 @@
+{
+  "name": "beast-api-crud",
+  "version": "0.0.0",
+  "description": "CRUD api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt@Pling!",
+  "license": "UNLICENSED",
+  "private": "true",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kartaphilos/beast-api-crud.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kartaphilos/beast-api-crud/issues"
+  },
+  "homepage": "https://github.com/kartaphilos/beast-api-crud#readme",
+  "keywords": [
+    "beast",
+    "crud",
+    "node"
+  ]
+}
