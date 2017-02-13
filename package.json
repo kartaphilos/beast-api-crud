@@ -21,5 +21,8 @@
     "beast",
     "crud",
     "node"
-  ]
+  ],
+  "dependencies": {
+    "express": "^4.14.1"
+  }
 }
