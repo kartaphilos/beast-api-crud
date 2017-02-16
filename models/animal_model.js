@@ -36,8 +36,11 @@ var AnimalModel = ottoman.model('Animal', {
   //Indexeses
   {
       index: {
-          getByName: {
-              by: 'name'
+          getByFullName: {
+              by: 'name.full'
+          },
+          getByDisplayName: {
+              by: 'name.display'
           },
           getBySpecies: {
             by: 'species'

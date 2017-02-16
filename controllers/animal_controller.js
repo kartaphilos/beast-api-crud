@@ -23,7 +23,7 @@ module.exports = {
     },
 
     getAnimalByName : (req, res) => {
-      AnimalModel.getByName(req.params.name, (error, beasts) => {
+      AnimalModel.getByFullName(req.params.name, (error, beasts) => {
           if (error) {
               return res.status(400).send(error);
           }
