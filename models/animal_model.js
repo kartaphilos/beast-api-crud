@@ -1,4 +1,5 @@
 var ottoman = require('ottoman');
+//ottoman.store = require('./../beast-api').store;
 
 var AnimalModel = ottoman.model('Animal', {
     species: 'string',  // Horse, Dog
@@ -10,7 +11,7 @@ var AnimalModel = ottoman.model('Animal', {
     colour: 'string', // use colour pick list in app to keep consistent strings in DB. Options stored in DB.
     birth: {
       date: 'Date',
-      inferred: { 'boolean', default: 'true' } // True if calculated from age entered in app.
+      inferred: { type: 'boolean', default: 'true' } // True if calculated from age entered in app.
     },
     size: 'integer',  // Size in cm - convert to SML for dogs and hands, inches for horses in app.
     activity: 'string', //working, agility, hacking, jumping... - this will change over time.  Does it need a history?
@@ -37,16 +38,21 @@ var AnimalModel = ottoman.model('Animal', {
       index: {
           getByName: {
               by: 'name'
+          },
+          getBySpecies: {
+            by: 'species'
           }
+          /*,
           getByYard: {
               by: 'yard' //will this work on both first & last??
-          }
+          },
           getByOwner: {
               by: 'owner'
-          }
+          },
           getByVet: {
               by: 'vet'
           }
+          */
       }
 });
 

@@ -23,6 +23,9 @@
     "node"
   ],
   "dependencies": {
-    "express": "^4.14.1"
+    "express": "^4.14.1",
+    "body-parser": "*",
+    "couchbase": "~2.2.5",
+    "ottoman": "^1.0.4"
   }
 }
