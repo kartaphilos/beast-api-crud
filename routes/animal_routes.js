@@ -8,5 +8,6 @@ module.exports = (app) => {
     app.route('/animal').get(AnimalCtrlr.getAnimals);
     app.route('/animal/:id').get(AnimalCtrlr.getAnimal);
     app.route('/animal/byName/:name').get(AnimalCtrlr.getAnimalByName);
+    app.route('/animal/:id').delete(AnimalCtrlr.deleteAnimal);
 
 }
