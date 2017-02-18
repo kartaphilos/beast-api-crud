@@ -17,11 +17,6 @@ function calcBirthDate(r) {
       agedate =  new Date(now.setUTCFullYear(year));
       console.log('dob: ', agedate);
       bd = (new Date(now.setUTCFullYear(year))).toISOString();
-
-      //diff = Date.now() - Date.parse(bd);
-      //D = Date.parse(diff);
-      //console.log('D1: ', D);
-      //bd = D.toISOString();
   }
   console.log('bd: ', bd);
   return bd;
@@ -34,7 +29,7 @@ module.exports = {
             species: req.body.type,
             name: {
                 full: req.body.name.full,
-                display: req.body.name.display
+                display: req.body.name.display  // Logic to autogenerate display from full
             },
             breed: req.body.breed,
             colour: req.body.colour,
