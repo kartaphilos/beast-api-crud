@@ -5,6 +5,9 @@ var ottoman = require("ottoman");
 
 var app = express();
 
+let d = new Date();
+console.log('starting@ ', d.toJSON());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
 

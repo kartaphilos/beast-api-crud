@@ -2,6 +2,31 @@ var AnimalModel = require("./../models/animal_model").AnimalModel;
 
 console.log('loading animal controller');
 
+function calcBirthDate(r) {
+  console.log('calculating birth date');
+  console.log('estimated: ', r.body.birth.estimated);
+  let bd = r.body.birth.date;
+  if (r.body.birth.estimated) {
+      console.log('using age to get birthdate');
+      agedate = new Date(bd);
+      console.log('agedate: ', agedate);
+      now = new Date();
+      console.log('now: ', now);
+      year = now.getUTCFullYear() - (agedate.getUTCFullYear()-1970);
+      console.log('year: ', year);
+      agedate =  new Date(now.setUTCFullYear(year));
+      console.log('dob: ', agedate);
+      bd = (new Date(now.setUTCFullYear(year))).toISOString();
+
+      //diff = Date.now() - Date.parse(bd);
+      //D = Date.parse(diff);
+      //console.log('D1: ', D);
+      //bd = D.toISOString();
+  }
+  console.log('bd: ', bd);
+  return bd;
+}
+
 module.exports = {
 
     createAnimal: (req, res) => {
@@ -13,9 +38,13 @@ module.exports = {
             },
             breed: req.body.breed,
             colour: req.body.colour,
-            //size: // logic needed for conversion to cm,
+            size:  req.body.size,
             activity: req.body.activity,
-            gender: req.body.gender
+            gender: req.body.gender,
+            birth: {
+              estimated: req.body.birth.estimated,
+              date: calcBirthDate(req)
+            }
         });
         beast.save( (error, result) => {
             if (error) {

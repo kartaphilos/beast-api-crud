@@ -9,11 +9,11 @@ var AnimalModel = ottoman.model('Animal', {
     },
     breed: 'string',  // use breed picklist in app for consistent strings. Stored in DB
     colour: 'string', // use colour pick list in app to keep consistent strings in DB. Options stored in DB.
-    birth: {
-      date: 'Date',
-      inferred: { type: 'boolean', default: 'true' } // True if calculated from age entered in app.
+    birth: {  // If estimated then date = Y+M+D from epoch ie. date value is age.  Else = birth date.
+      date: 'Date',  // Convert to birthdate before Create/Update if contains age ie. estimated
+      estimated: { type: 'boolean', default: 'true' }
     },
-    size: 'integer',  // Size in cm - convert to SML for dogs and hands, inches for horses in app.
+    size: 'string',  // Can convert to number for hh or cm.
     activity: 'string', //working, agility, hacking, jumping... - this will change over time.  Does it need a history?
     gender: 'string', // Pick list in app for each animal type
     owner: {
