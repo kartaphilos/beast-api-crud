@@ -2,6 +2,7 @@ var ottoman = require('ottoman');
 //ottoman.store = require('./../beast-api').store;
 
 var AnimalModel = ottoman.model('Animal', {
+    patient_since: {type: 'Date', default:function(){return new Date()}}}
     species: 'string',  // Horse, Dog
     name: {
         full: 'string',
