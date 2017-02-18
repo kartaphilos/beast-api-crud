@@ -4,7 +4,7 @@ console.log('loading animal controller');
 
 module.exports = {
 
-    postAnimal: (req, res) => {
+    createAnimal: (req, res) => {
         var beast = new AnimalModel({
             species: req.body.type,
             name: {
