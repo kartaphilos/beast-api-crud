@@ -7,7 +7,6 @@ var AnimalModel = ottoman.model('Animal', {
         patient_since: {
             type: 'Date',
             default: Date.now
-            }
         },
         species: 'string', // Horse, Dog
         name: {
@@ -50,6 +49,9 @@ var AnimalModel = ottoman.model('Animal', {
     //Indexeses
     {
         index: {
+            getByName: {
+                by: 'name.display'
+            },
             getByFullName: {
                 by: 'name.full'
             },
