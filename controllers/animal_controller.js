@@ -26,10 +26,10 @@ module.exports = {
 
     createAnimal: (req, res) => {
         var beast = new AnimalModel({
-            species: req.body.type,
+            species: req.body.species,
             name: {
                 full: req.body.name.full,
-                display: req.body.name.display  // Logic to autogenerate display from full
+                display: req.body.name.display  // ToDo: Logic to autogenerate display from full
             },
             breed: req.body.breed,
             colour: req.body.colour,

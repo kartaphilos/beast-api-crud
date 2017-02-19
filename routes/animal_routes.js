@@ -11,3 +11,5 @@ module.exports = (app) => {
     app.route('/animal/:id').delete(AnimalCtrlr.deleteAnimal);
 
 }
+
+console.log('Finished: loading animal routes');

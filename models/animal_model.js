@@ -1,8 +1,10 @@
 var ottoman = require('ottoman');
 //ottoman.store = require('./../beast-api').store;
 
+console.log('Loading AnimalModel');
+
 var AnimalModel = ottoman.model('Animal', {
-    patient_since: {type: 'Date', default:function(){return new Date()}}}
+    patient_since: {type: 'Date', default: function() {return new Date()}},
     species: 'string',  // Horse, Dog
     name: {
         full: 'string',
@@ -17,6 +19,8 @@ var AnimalModel = ottoman.model('Animal', {
     size: 'string',  // Can convert to number for hh or cm.
     activity: 'string', //working, agility, hacking, jumping... - this will change over time.  Does it need a history?
     gender: 'string', // Pick list in app for each animal type
+    // ToDo - for the references humans can't we just make an array or references.
+    // Can load all at once if needed
     owner: {
       ref: 'Person'
     },
@@ -29,7 +33,9 @@ var AnimalModel = ottoman.model('Animal', {
     yard: {
       ref: 'Location'
     },
-    flagged: 'boolean', // Is this dangerous or need special handling?
+    flagged: 'boolean', // Is this Animal dangerous or need special handling?
+    //avatar: 'blob' // ToDo
+    //photos: [{}]  // ToDo
     comments: [{  // Comments on the Animal.
         ref: 'Comment'
     }]
@@ -37,7 +43,7 @@ var AnimalModel = ottoman.model('Animal', {
   //Indexeses
   {
       index: {
-          getByFullName: {
+          /*getByFullName: {
               by: 'name.full'
           },
           getByDisplayName: {
@@ -45,7 +51,7 @@ var AnimalModel = ottoman.model('Animal', {
           },
           getBySpecies: {
             by: 'species'
-          }
+          } */
           /*,
           getByYard: {
               by: 'yard' //will this work on both first & last??
@@ -59,5 +65,6 @@ var AnimalModel = ottoman.model('Animal', {
           */
       }
 });
+
 
 module.exports.AnimalModel = AnimalModel;

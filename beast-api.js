@@ -11,8 +11,11 @@ console.log('starting@ ', d.toJSON());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
 
+console.log('Starting: Couchbase');
 var cluster = new couchbase.Cluster("couchbase://localhost");
+console.log('Opening Bucket');
 var bucket = cluster.openBucket("beast-test");
+console.log('New Ottoman adapter');
 ottoman.store = new ottoman.CbStoreAdapter(bucket, couchbase);
 module.exports.bucket = bucket;
 module.exports.store = ottoman.store;
@@ -21,6 +24,7 @@ module.exports.store = ottoman.store;
 var routes = require('./routes')(app);
 
 //ottoman.bucket = bucket;
+console.log('Ensure Indexeses');
 ottoman.ensureIndices(function(error) {
     if (error) {
         console.log(error);
