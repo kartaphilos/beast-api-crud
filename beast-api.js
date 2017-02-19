@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }) );
 console.log('Starting: Couchbase');
 var cluster = new couchbase.Cluster("couchbase://localhost");
 console.log('Opening Bucket');
-var bucket = cluster.openBucket("beast-test");
+var bucket = cluster.openBucket("beast_test");
 console.log('New Ottoman adapter');
 ottoman.store = new ottoman.CbStoreAdapter(bucket, couchbase);
 module.exports.bucket = bucket;
