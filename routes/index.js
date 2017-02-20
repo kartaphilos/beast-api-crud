@@ -5,7 +5,9 @@ module.exports = function(app) {
         if (file === "index.js" || file.substr(file.lastIndexOf('.') + 1) !== 'js')
             return;
         var name = file.substr(0, file.indexOf('.'));
+        console.log('Processing: ', name);
         require('./' + name)(app);
+        console.log('Finished Processing: ', name);
     });
 }
 
