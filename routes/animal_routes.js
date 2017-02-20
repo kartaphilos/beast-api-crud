@@ -1,14 +1,14 @@
-var AnimalCtrlr = require('./../controllers/animal_controller');
+var ctr = require('./../controllers/animal_controller');
 
 console.log('loading animal routes');
 
 module.exports = (app) => {
 
-    app.route('/animal').post(AnimalCtrlr.createAnimal);
-    app.route('/animal').get(AnimalCtrlr.getAnimals);
-    app.route('/animal/:id').get(AnimalCtrlr.getAnimal);
-    app.route('/animal/byName/:name').get(AnimalCtrlr.getAnimalByName);
-    app.route('/animal/:id').delete(AnimalCtrlr.deleteAnimal);
+    app.route('/animal').post(ctr.createAnimal);
+    app.route('/animal').get(ctr.getAnimals);
+    app.route('/animal/:id').get(ctr.getAnimal);
+    app.route('/animal/byName/:name').get(ctr.getAnimalByName);
+    app.route('/animal/:id').delete(ctr.deleteAnimal);
 
 }
 

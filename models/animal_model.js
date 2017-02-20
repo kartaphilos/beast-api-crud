@@ -50,7 +50,8 @@ var AnimalModel = ottoman.model('Animal', {
     {
         index: {
             getByName: {
-                by: 'name.display'
+                by: 'name',
+                type: 'n1ql'
             },
             getByFullName: {
                 by: 'name.full'
@@ -62,7 +63,7 @@ var AnimalModel = ottoman.model('Animal', {
                 by: 'species'
             },
             getByYard: {
-                by: 'yard' //will this work on both first & last??
+                by: 'yard'
             },
             getByOwner: {
                 by: 'owner'
