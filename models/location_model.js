@@ -12,8 +12,8 @@ var LocationModel = ottoman.model('Location', {
     postcode: 'string',
     country: { type: 'string', default: 'GB' },  // Country code.  ISO... whatever Goog uses?
     coordinates: {
-      lat: 'number',
-      long: 'number'
+      lat: 'string',
+      long: 'string'
     },
     contact_person: {
       ref: 'Person'
