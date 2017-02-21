@@ -5,6 +5,7 @@ console.log('loading location routes');
 module.exports = (app) => {
 
     app.route('/location').post(ctr.createLocation);
+    app.route('/location/:id').put(ctr.updateLocation);
     app.route('/location').get(ctr.getLocations);
     app.route('/location/:id').get(ctr.getLocation);
     app.route('/location/byName/:name').get(ctr.getLocationByName);

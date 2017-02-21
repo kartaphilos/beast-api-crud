@@ -27,6 +27,41 @@ module.exports = {
         });
     },
 
+    updateLocation: (req, res) => {
+      LocationModel.getById(req.params.id, (error, loc) => {
+          if (error) {
+              return res.status(400).send(error);
+          }
+          if (req.body._id != loc._id) {
+              console.log('_id mismatch');
+              return res.status(409).send('_id mismatch');
+          }
+          for (let key in req.body) {
+            if (req.body.hasOwnProperty(key)) {
+              let put = req.body[key];
+              let doc = loc[key];
+              if (doc != put ) {
+                console.log('Changing ',loc[key], 'to ', put);
+                loc[key] = put;
+                var needSave = true;
+              }
+            }
+          }
+          if (needSave) {
+            console.log('saving new loc doc: ', loc);
+            loc.save( (error, result) => {
+              if (error) {
+                  return res.status(400).send(error);
+              }
+              res.status(201).send('Updated: ' + loc.name + '\n' + result);
+            });
+          } else {
+            console.log('No changes in request');
+            return res.status(400).send('No changes in request');
+          }
+        });
+    },
+
     getLocation: (req, res) => {
         LocationModel.getById(req.params.id, (error, loc) => {
             if (error) {
