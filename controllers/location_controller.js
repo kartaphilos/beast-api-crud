@@ -55,7 +55,8 @@ module.exports = {
     },
 
     getLocationByCoordinates: (req, res) => {
-        LocationModel.getByCoordinates(req.params.coordinates, (error, locs) => {
+        console.log('ByCoords - lat: ', lat, ' long: ', req.params.coord)
+        LocationModel.getByCoordinates(req.params.coords, (error, locs) => {
             if (error) {
                 return res.status(400).send(error);
             }
@@ -73,10 +74,12 @@ module.exports = {
     },
 
     getLocationByCity: (req, res) => {
+        console.log('getByCity: ', req.params.city);
         LocationModel.getByCity(req.params.city, (error, locs) => {
             if (error) {
                 return res.status(400).send(error);
             }
+            console.log('Locations returned: ', locs);
             res.send(locs);
         })
     },
