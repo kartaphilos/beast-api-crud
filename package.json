@@ -2,9 +2,10 @@
   "name": "beast-api-crud",
   "version": "0.0.0",
   "description": "CRUD api",
-  "main": "index.js",
+  "main": "beast-api.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "SET NODE_ENV=dev&& node beast-api.js",
+    "test": "mocha --timeout 5000"
   },
   "author": "Matt@Pling!",
   "license": "UNLICENSED",

@@ -1,5 +1,8 @@
 var LocationModel = require("./../models/location_model").LocationModel;
 
+//Temp for Testing
+var ottoman = require('ottoman');
+
 console.log('loading location controller');
 
 module.exports = {
@@ -19,11 +22,15 @@ module.exports = {
                 long: req.body.coordinates.long
             }
         });
-        loc.save((error, result) => {
+        loc.save( (error, result) => {
             if (error) {
                 return res.status(400).send(error);
             }
-            res.status(201).send('Created: ' + loc.name + '\n' + result);
+            else {
+              console.log(loc);
+              res.status(201);
+              res.json(loc);
+            }
         });
     },
 
@@ -75,10 +82,15 @@ module.exports = {
     },
 
     getLocations: (req, res) => {
+        console.log('GET locations called');
+        //console.log('cluster', cluster);
+        //console.log('bucket', bucket);
+        //console.log('store', ottoman.store);
         LocationModel.find({}, (error, locs) => {
             if (error) {
                 return res.status(400).send(error);
             }
+            //console.log('results: ', locs);
             res.send(locs);
         });
     },

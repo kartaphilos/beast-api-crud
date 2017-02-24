@@ -1,7 +1,7 @@
 {
     "couchbase": {
         "server": "127.0.0.1:8091",
-        "bucket": "beast_dev"
+        "bucket": "beast_test"
     },
     "listen": {
       "ip": "localhost",

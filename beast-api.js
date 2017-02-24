@@ -18,10 +18,12 @@ console.log('Starting: Couchbase: ', config.couchbase.server);
 var cluster = new couchbase.Cluster(config.couchbase.server);
 console.log('Opening Bucket: ', config.couchbase.bucket);
 var bucket = cluster.openBucket(config.couchbase.bucket);
+
 console.log('New Ottoman adapter');
 ottoman.store = new ottoman.CbStoreAdapter(bucket, couchbase);
 module.exports.bucket = bucket;
 module.exports.store = ottoman.store;
+console.log('Bucket opened: ', ottoman.bucket._name);
 
 // Get routes for app from route dir using index.js to load route files
 var routes = require('./routes')(app);
@@ -36,3 +38,5 @@ ottoman.ensureIndices(function(error) {
         console.log('Listening on port %s...', server.address().port);
     });
 })
+
+module.exports = app; //To run tests
