@@ -4,6 +4,6 @@
         "bucket": "beast_test"
     },
     "listen": {
-      "port": "31000"
+      "port": "31001"
     }
 }

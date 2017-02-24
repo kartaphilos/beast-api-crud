@@ -83,14 +83,16 @@ module.exports = {
 
     getLocations: (req, res) => {
         console.log('GET locations called');
-        //console.log('cluster', cluster);
-        //console.log('bucket', bucket);
         //console.log('store', ottoman.store);
         LocationModel.find({}, (error, locs) => {
             if (error) {
                 return res.status(400).send(error);
             }
-            //console.log('results: ', locs);
+            console.log('GET results: ', locs);
+            if (locs == [ null ] ) {
+              console.log('GET null results: ', locs);
+              locs = [];
+            }
             res.send(locs);
         });
     },
