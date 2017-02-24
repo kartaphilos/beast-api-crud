@@ -23,9 +23,16 @@
     "node"
   ],
   "dependencies": {
-    "express": "^4.14.1",
     "body-parser": "*",
+    "config": "^1.25.1",
     "couchbase": "~2.2.5",
-    "ottoman": "^1.0.4"
+    "express": "^4.14.1",
+    "ottoman": "^1.0.4",
+    "promise": "^7.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0"
   }
 }

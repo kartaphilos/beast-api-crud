@@ -1,7 +1,8 @@
-var express = require("express");
-var couchbase = require("couchbase");
-var bodyParser = require("body-parser");
-var ottoman = require("ottoman");
+var express = require('express');
+var couchbase = require('couchbase');
+var bodyParser = require('body-parser');
+var ottoman = require('ottoman');
+var config = require('config');
 
 var app = express();
 
@@ -11,10 +12,12 @@ console.log('starting@ ', d.toJSON());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }) );
 
-console.log('Starting: Couchbase');
-var cluster = new couchbase.Cluster("couchbase://localhost");
-console.log('Opening Bucket');
-var bucket = cluster.openBucket("beast_test");
+var port = config.listen.port;
+console.log('Port: ', port);
+console.log('Starting: Couchbase: ', config.couchbase.server);
+var cluster = new couchbase.Cluster(config.couchbase.server);
+console.log('Opening Bucket: ', config.couchbase.bucket);
+var bucket = cluster.openBucket(config.couchbase.bucket);
 console.log('New Ottoman adapter');
 ottoman.store = new ottoman.CbStoreAdapter(bucket, couchbase);
 module.exports.bucket = bucket;
@@ -29,7 +32,7 @@ ottoman.ensureIndices(function(error) {
     if (error) {
         console.log(error);
     }
-    var server = app.listen(31000, function() {
-        console.log("Listening on port %s...", server.address().port);
+    var server = app.listen(port, function() {
+        console.log('Listening on port %s...', server.address().port);
     });
 })
