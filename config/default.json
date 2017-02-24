@@ -4,6 +4,7 @@
         "bucket": "beast_dev"
     },
     "listen": {
+      "ip": "localhost",
       "port": "31000"
     }
 }
