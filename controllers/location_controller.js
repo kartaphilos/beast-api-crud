@@ -6,20 +6,20 @@ module.exports = {
 
     createLocation: (req, res) => {
         var loc = new LocationModel({
-          loctype: req.body.loctype,
-          name: req.body.name,
-          number: req.body.number,
-          street: req.body.street,
-          city: req.body.city,  // town = city = village
-          county: req.body.county,
-          postcode: req.body.postcode,
-          //country: { 'string', default: 'GB' },  // Country code.  ISO... whatever Goog uses?
-          coordinates: {
-            lat: req.body.coordinates.lat,
-            long: req.body.coordinates.long
-          }
+            loctype: req.body.loctype,
+            name: req.body.name,
+            number: req.body.number,
+            street: req.body.street,
+            city: req.body.city, // town = city = village
+            county: req.body.county,
+            postcode: req.body.postcode,
+            //country: { 'string', default: 'GB' },  // Country code.  ISO... whatever Goog uses?
+            coordinates: {
+                lat: req.body.coordinates.lat,
+                long: req.body.coordinates.long
+            }
         });
-        loc.save( (error, result) => {
+        loc.save((error, result) => {
             if (error) {
                 return res.status(400).send(error);
             }
@@ -27,38 +27,41 @@ module.exports = {
         });
     },
 
+    /*
+     * Redo this PUT with Object.assign to compare object values and assign only differences??
+     */
     updateLocation: (req, res) => {
-      LocationModel.getById(req.params.id, (error, loc) => {
-          if (error) {
-              return res.status(400).send(error);
-          }
-          if (req.body._id != loc._id) {
-              console.log('_id mismatch');
-              return res.status(409).send('_id mismatch');
-          }
-          for (let key in req.body) {
-            if (req.body.hasOwnProperty(key)) {
-              let put = req.body[key];
-              let doc = loc[key];
-              if (doc != put ) {
-                console.log('Changing ',loc[key], 'to ', put);
-                loc[key] = put;
-                var needSave = true;
-              }
+        LocationModel.getById(req.params.id, (error, loc) => {
+            if (error) {
+                return res.status(400).send(error);
             }
-          }
-          if (needSave) {
-            console.log('saving new loc doc: ', loc);
-            loc.save( (error, result) => {
-              if (error) {
-                  return res.status(400).send(error);
-              }
-              res.status(201).send('Updated: ' + loc.name + '\n' + result);
-            });
-          } else {
-            console.log('No changes in request');
-            return res.status(400).send('No changes in request');
-          }
+            if (req.body._id != loc._id) {
+                console.log('_id mismatch');
+                return res.status(409).send('_id mismatch');
+            }
+            for (let key in req.body) {
+                if (req.body.hasOwnProperty(key)) {
+                    let put = req.body[key];
+                    let doc = loc[key];
+                    if (doc != put) {
+                        console.log('Changing ', loc[key], 'to ', put);
+                        loc[key] = put;
+                        var needSave = true;
+                    }
+                }
+            }
+            if (needSave) {
+                console.log('saving new loc doc: ', loc);
+                loc.save((error, result) => {
+                    if (error) {
+                        return res.status(400).send(error);
+                    }
+                    res.status(201).send('Updated: ' + loc.name + '\n' + result);
+                });
+            } else {
+                console.log('No changes in request');
+                return res.status(400).send('No changes in request');
+            }
         });
     },
 
@@ -95,7 +98,7 @@ module.exports = {
             if (error) {
                 return res.status(400).send(error);
             }
-            res.send(locs);  //need logic for coordinates nearest
+            res.send(locs); //need logic for coordinates nearest
         })
     },
 
@@ -129,17 +132,17 @@ module.exports = {
     },
 
     deleteLocation: (req, res) => {
-      LocationModel.getById(req.params.id, (error, loc) => {
-          if (error) {
-              return res.status(400).send(error);
-          }
-          loc.remove( (error, result) => {
+        LocationModel.getById(req.params.id, (error, loc) => {
             if (error) {
-              return res.status(400).send(error);
+                return res.status(400).send(error);
             }
-            res.status(202).send('Deleted! ' + loc.name.full);
-          })
-      })
+            loc.remove((error, result) => {
+                if (error) {
+                    return res.status(400).send(error);
+                }
+                res.status(202).send('Deleted! ' + loc.name.full);
+            })
+        })
     }
 
 }
