@@ -80,8 +80,10 @@ module.exports = {
         beast.save((error, result) => {
             if (error) {
                 return res.status(400).send(error);
+            } else {
+              res.status(201)
+              res.json(beast);
             }
-            res.status(201).send('Created: ' + beast.name.full + '\n' + result);
         });
     },
 
@@ -98,6 +100,11 @@ module.exports = {
         AnimalModel.find({}, (error, beasts) => {
             if (error) {
                 return res.status(400).send(error);
+            }
+            beasts = JSON.parse(JSON.stringify(beasts));
+            if (beasts[0] == null) {
+              console.log('GOT [ null ]');
+              beasts = [];
             }
             res.send(beasts);
         });
