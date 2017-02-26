@@ -3,6 +3,7 @@ var ottoman = require('ottoman');
 console.log('Loading LocationModel');
 
 var LocationModel = ottoman.model('Location', {
+    location_since: { type: 'Date', default: Date.now },
     loctype: 'string', //home, yard, ...
     name: 'string',  // Can be informal name
     number: 'string',

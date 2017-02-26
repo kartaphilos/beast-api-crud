@@ -88,12 +88,15 @@ module.exports = {
             if (error) {
                 return res.status(400).send(error);
             }
-            console.log('GET results: ', locs);
-            if (locs == [ null ] ) {
-              console.log('GET null results: ', locs);
+            console.log('GET results locs: ', locs);
+            locs = JSON.parse(JSON.stringify(locs));
+            console.log('results parsed/stringified locs: ', locs);
+            if (locs[0] == null) {
+              console.log('GOT [ null ]');
               locs = [];
             }
-            res.send(locs);
+            //locs = JSON.parse(locs);
+            res.status(200).json(locs);
         });
     },
 
