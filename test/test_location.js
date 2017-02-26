@@ -106,17 +106,17 @@ describe('Locations', () => {
     describe('/GET/location/:id ', () => {
         it('it should GET a location by the given id', (done) => {
             let loc = new LocationModel({
-              loctype: 'yard',
-              name: 'Mocha POST Test #2',
-              number: '2',
-              street: 'Nagster Lane',
-              city: 'Nag upon Hay',
-              county: 'Straw',
-              postcode: 'XX009YY',
-              coordinates: {
-                  lat: '50.0000N',
-                  long: '2.0000W'
-              }
+                loctype: 'yard',
+                name: 'Mocha POST Test #2',
+                number: '2',
+                street: 'Nagster Lane',
+                city: 'Nag upon Hay',
+                county: 'Straw',
+                postcode: 'XX009YY',
+                coordinates: {
+                    lat: '50.0000N',
+                    long: '2.0000W'
+                }
             });
             loc.save((err, res) => {
                 console.log('/GET/:id - Created Loc: ', loc);
@@ -141,38 +141,37 @@ describe('Locations', () => {
     describe('/PUT/:id location', () => {
         it('it should UPDATE a location given the id', (done) => {
             let loc = new LocationModel({
-              loctype: 'yard',
-              name: 'Mocha POST Test #3',
-              number: '3',
-              street: 'Nagster Lane',
-              city: 'Nag upon Hay',
-              county: 'Straw',
-              postcode: 'XX009YY',
-              coordinates: {
-                  lat: '50.0000N',
-                  long: '3.0000W'
-              }
+                loctype: 'yard',
+                name: 'Mocha POST Test #3',
+                number: '3',
+                street: 'Nagster Lane',
+                city: 'Nag upon Hay',
+                county: 'Straw',
+                postcode: 'XX009YY',
+                coordinates: {
+                    lat: '50.0000N',
+                    long: '3.0000W'
+                }
             });
             loc.save((err, result) => {
                 console.log('PUT loc._id: ', loc._id);
                 chai.request(beastapi)
                     .put('/location/' + loc._id)
                     .send({
-                      _id: loc._id,
-                      loctype: 'home',
-                      name: 'Mocha POST Test #3',
-                      number: '3',
-                      street: 'Nagster Lane',
-                      city: 'Nag upon Hay',
-                      county: 'Straw',
-                      postcode: 'XX009YY',
-                      coordinates: {
-                          lat: '50.0000N',
-                          long: '3.0000W'
-                      }
+                        _id: loc._id,
+                        loctype: 'home',
+                        name: 'Mocha POST Test #3',
+                        number: '3',
+                        street: 'Nagster Lane',
+                        city: 'Nag upon Hay',
+                        county: 'Straw',
+                        postcode: 'XX009YY',
+                        coordinates: {
+                            lat: '50.0000N',
+                            long: '3.0000W'
+                        }
                     })
-                    .end( (err, res) => {
-                        console.log('PUT end res: ', res);
+                    .end((err, res) => {
                         res.should.have.status(201);
                         res.body.should.be.a('object');
                         res.body.should.have.property('message').eql('Location updated!');
@@ -187,17 +186,17 @@ describe('Locations', () => {
     describe('/DELETE/:id location', () => {
         it('it should DELETE a location given the id', (done) => {
             let loc = new LocationModel({
-              loctype: 'yard',
-              name: 'Mocha POST Test #4',
-              number: '4',
-              street: 'Nagster Lane',
-              city: 'Nag upon Hay',
-              county: 'Straw',
-              postcode: 'XX009YY',
-              coordinates: {
-                  lat: '50.0000N',
-                  long: '4.0000W'
-              }
+                loctype: 'yard',
+                name: 'Mocha POST Test #4',
+                number: '4',
+                street: 'Nagster Lane',
+                city: 'Nag upon Hay',
+                county: 'Straw',
+                postcode: 'XX009YY',
+                coordinates: {
+                    lat: '50.0000N',
+                    long: '4.0000W'
+                }
             });
             loc.save((err, result) => {
                 chai.request(beastapi)
