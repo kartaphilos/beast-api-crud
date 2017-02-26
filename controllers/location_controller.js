@@ -13,7 +13,7 @@ module.exports = {
             name: req.body.name,
             number: req.body.number,
             street: req.body.street,
-            city: req.body.city, 
+            city: req.body.city,
             county: req.body.county,
             postcode: req.body.postcode,
             coordinates: {
@@ -22,11 +22,12 @@ module.exports = {
             }
         });
         loc.save( (error, result) => {
+            console.log('POST new Location: loc.save: ', result)
             if (error) {
                 return res.status(400).send(error);
             }
             else {
-              console.log(loc);
+              console.log('LocModel - loc: ', loc);
               res.status(201);
               res.json(loc);
             }
