@@ -27,7 +27,7 @@ module.exports = {
                 return res.status(400).send(error);
             }
             else {
-              console.log('LocModel - loc: ', loc);
+              //console.log('LocModel - loc: ', loc);
               res.status(201);
               res.json(loc);
             }
