@@ -55,7 +55,7 @@ describe('Locations', () => {
             chai.request(beastapi)
                 .get('/location')
                 .end( (err, res) => {
-                    console.log(res.body);
+                    console.log('GET response: ', res.body);
                     res.should.have.status(200);
                     res.body.should.be.a('array');
                     res.body.length.should.be.eql(0);
