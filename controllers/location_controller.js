@@ -13,10 +13,9 @@ module.exports = {
             name: req.body.name,
             number: req.body.number,
             street: req.body.street,
-            city: req.body.city, // town = city = village
+            city: req.body.city, 
             county: req.body.county,
             postcode: req.body.postcode,
-            //country: { 'string', default: 'GB' },  // Country code.  ISO... whatever Goog uses?
             coordinates: {
                 lat: req.body.coordinates.lat,
                 long: req.body.coordinates.long
@@ -34,9 +33,7 @@ module.exports = {
         });
     },
 
-    /*
-     * Redo this PUT with Object.assign to compare object values and assign only differences??
-     */
+    /** Redo this PUT with Object.assign to compare object values and assign only differences?? **/
     updateLocation: (req, res) => {
         LocationModel.getById(req.params.id, (error, loc) => {
             if (error) {
